@@ -12,5 +12,10 @@ User::sUs_initials User::retName()
 
 vector<Book> User::retBooks()
 {
-	return books;
+	return booksGoted;
+}
+
+void User::putBook(Book cc)
+{
+	booksGoted.push_back(cc);
 }

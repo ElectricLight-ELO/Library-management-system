@@ -21,6 +21,12 @@ int Book::GetInfoTaking()
 	return taked;
 }
 
+void Book::PutDate(DateReceiv dRc, DateReturn dRt)
+{
+	dateRec = dRc;
+	dateRet = dRt;
+}
+
 Book::DateReceiv Book::GetDateReceiv()
 {
 	return dateRec;

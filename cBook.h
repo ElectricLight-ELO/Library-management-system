@@ -27,6 +27,7 @@ public:
 	sAuthor GetAuthor();
 	int GetInfoTaking();
 
+	void PutDate(DateReceiv dRc, DateReturn dRt);
 	DateReceiv GetDateReceiv();
 	DateReturn GetDateReturn();
 private:
