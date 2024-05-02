@@ -90,3 +90,23 @@ bool PassBook(vector<User>& usrs, string idUser, vector<Book>& bk, Book& bok, Bo
 
     return false;
 }
+
+void OccupiedBook(vector<User>& usrs)
+{
+    for (int i = 0; i < usrs.size(); i++)
+    {
+        vector<Book> bookGoted = usrs[i].retBooks();
+        if (bookGoted.size() > 0)
+        {
+            cout << "Пользователь: ID- " << usrs[i].retName().id << " Фамилия: " << usrs[i].retName().second_name << endl;
+            for (Book t : bookGoted)
+            {
+                cout  << "Название: " << t.GetName() << "\nАвтор: " << t.GetAuthor().name << " " << t.GetAuthor().second_name << "\n";
+                cout << "Дата выдачи: " << t.GetDateReceiv().day << "." << t.GetDateReceiv().month << "." << t.GetDateReceiv().year <<"\n";
+                cout << "Дата возврата: " << t.GetDateReturn().day << "." << t.GetDateReturn().month << "." << t.GetDateReturn().year << "\n";
+            }
+
+            cout << endl << endl;
+        }
+    }
+}

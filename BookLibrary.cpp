@@ -20,11 +20,12 @@ int main()
 	while (true)
 	{
 		int n = 0;
-		cout << "Создать нового пользователя 1" << endl;
+		cout << endl << "Создать нового пользователя 1" << endl;
 		cout << "Добавить книгу 2" << endl;
 		cout << "Выдать книгу 3" << endl;
-		cout << "Вывести всех пользователей 4" << endl;
-		cout << "Введите вариант работы: " << endl;
+		cout << "Получить книги, занятые 4" << endl;
+		cout << "Вывести всех пользователей 5" << endl;
+		cout << "Введите вариант работы: " << endl << endl;
 		cin >> n;
 
 		switch (n)
@@ -95,10 +96,19 @@ int main()
 			Dretu.day = dateRet[0][0];
 			Dretu.month = dateRet[1][0];
 			Dretu.year = dateRec[2][0];
-			PassBook(users, id, books, tmp, Drecv, Dretu);
+			cout << endl;
+			if (!PassBook(users, id, books, tmp, Drecv, Dretu))
+			{
+				cout << "Книга занята либо её не существует" << endl;
+			}
 			break;
 		}
 		case 4:
+		{
+			OccupiedBook(users);
+			break;
+		}
+		case 5:
 		{
 			for (User us : users)
 			{
@@ -106,7 +116,7 @@ int main()
 
 				cout << "Фамилия: " << init.second_name << endl;
 				cout << "Имя: " << init.name << endl;
-				cout << "ID:" << init.id << endl << endl;
+				cout << "ID: " << init.id << endl << endl;
 			}
 			break;
 		}
