@@ -110,3 +110,77 @@ void OccupiedBook(vector<User>& usrs)
         }
     }
 }
+
+bool RemoveBook(vector<Book>& bk, Book& bok)
+{
+    for (int i = 0; i < bk.size(); i++)
+    {
+        if (bk[i].GetName() == bok.GetName())
+        {
+            bk.erase(bk.begin() + i);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool RemoveDate(vector<Book>& bk, Book& bok)
+{
+    for (int i = 0; i < bk.size(); i++)
+    {
+        if (bk[i].GetName() == bok.GetName())
+        {
+            bk[i].RemoveDate();
+            return true;
+        }
+    }
+
+    return false;
+}
+//bool is_date_valid(const std::string& str) {
+//    std::regex pattern("^\\d{2}\\.\\d{2}\\.\\d{2}$");
+//    return std::regex_match(str, pattern);
+//}
+
+bool is_date_valid(const std::string& str) {
+    if (str.size() != 8) {
+        return false;
+    }
+
+    for (int i = 0; i < str.size(); ++i) {
+        if (i == 2 || i == 5) {
+            if (str[i] != '.') {
+                return false;
+            }
+        }
+        else {
+            if (!isdigit(str[i])) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+bool RemoveBookOnUser(vector<User>& usrs, vector<Book>& bk, Book& bok)
+{
+    if (!existBook(bk, bok))
+    {
+        for (int i = 0; i < usrs.size(); i++)
+        {
+            vector<Book>& books = usrs[i].retBooks();
+            for (int c = 0; c < books.size(); c++)
+            {
+                if (books[c].GetName() == bok.GetName())
+                {
+                    RemoveBook(books, books[c]);
+                    RemoveDate(bk, bok);
+                }
+            }
+        }
+    }
+
+    return false;
+}

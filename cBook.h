@@ -28,6 +28,7 @@ public:
 	int GetInfoTaking();
 
 	void PutDate(DateReceiv dRc, DateReturn dRt);
+	void RemoveDate();
 	DateReceiv GetDateReceiv();
 	DateReturn GetDateReturn();
 private:

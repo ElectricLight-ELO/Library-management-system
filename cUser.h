@@ -16,7 +16,7 @@ public:
 	User(sUs_initials author);
 
 	sUs_initials retName();
-	vector<Book> retBooks();
+	vector<Book>& retBooks();
 	void putBook(Book cc);
 private:
 	sUs_initials initials;

@@ -10,7 +10,7 @@ User::sUs_initials User::retName()
 	return initials;
 }
 
-vector<Book> User::retBooks()
+vector<Book>& User::retBooks()
 {
 	return booksGoted;
 }

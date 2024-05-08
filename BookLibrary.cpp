@@ -17,14 +17,17 @@ Book имеет название, дату выдачи/возврата. Ини
 int main()
 {
 	setlocale(0, "RU");
+	
 	while (true)
 	{
+	work:
 		int n = 0;
 		cout << endl << "Создать нового пользователя 1" << endl;
 		cout << "Добавить книгу 2" << endl;
 		cout << "Выдать книгу 3" << endl;
-		cout << "Получить книги, занятые 4" << endl;
-		cout << "Вывести всех пользователей 5" << endl;
+		cout << "Принять книгу обратно 4" << endl;
+		cout << "Получить книги, занятые 5" << endl;
+		cout << "Вывести всех пользователей 6" << endl;
 		cout << "Введите вариант работы: " << endl << endl;
 		cin >> n;
 
@@ -78,12 +81,21 @@ int main()
 			cin >> id;
 			cout << "Впишите название книги: " << endl;
 			cin >> bookName;
-			cout << "Впишите дату выдачи: " << endl;
+			cout << "Впишите дату выдачи (dd.mm.yy): " << endl;
 			cin >> dRc;
-			cout << "Впишите дату возврата: " << endl;
+			cout << "Впишите дату возврата (dd.mm.yy): " << endl;
 			cin >> dRt;
-			dateRec = convertDateStringToVector(dRc);
-			dateRet = convertDateStringToVector(dRt);
+			if (is_date_valid(dRc) && is_date_valid(dRt))
+			{
+				dateRec = convertDateStringToVector(dRc);
+				dateRet = convertDateStringToVector(dRt);
+			}
+			else
+			{
+				cout << "Дата введена не верно" << endl;
+				goto work;
+			}
+
 			Book::sAuthor author;
 			Book tmp(bookName, author);
 			Book::DateReceiv Drecv;
@@ -95,7 +107,7 @@ int main()
 
 			Dretu.day = dateRet[0][0];
 			Dretu.month = dateRet[1][0];
-			Dretu.year = dateRec[2][0];
+			Dretu.year = dateRet[2][0];
 			cout << endl;
 			if (!PassBook(users, id, books, tmp, Drecv, Dretu))
 			{
@@ -105,10 +117,21 @@ int main()
 		}
 		case 4:
 		{
+			Book::sAuthor auth;
+			auth.name = "";
+			auth.second_name = "";
+			string bName;
+			cout << "Впишите название книги: " << endl;
+			cin >> bName;
+			Book b(bName, auth);
+			RemoveBookOnUser(users, books, b);
+		}
+		case 5:
+		{
 			OccupiedBook(users);
 			break;
 		}
-		case 5:
+		case 6:
 		{
 			for (User us : users)
 			{
